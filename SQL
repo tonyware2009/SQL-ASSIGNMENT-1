@@ -1,3 +1,8 @@
+
+-- DDL DATA DEFINITION LANGUAGE
+-- Make Tables Here!!
+
+
 CREATE TABLE Categories (
     CategoryID INT PRIMARY KEY,
     CategoryName VARCHAR(100) NOT NULL
@@ -32,6 +37,48 @@ CREATE TABLE Orders (
     CONSTRAINT FK_OrderProduct FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
 );
 
+-- DML DATA MANIPULATION LANGUAGE
 
 -- Populating Categories
-INSERT 
+INSERT INTO Categories (CategoryID, CategoryName) VALUES (1, 'Computers');
+INSERT INTO Categories (CategoryID, CategoryName) VALUES (1, 'Audio');
+INSERT INTO Categories (CategoryID, CategoryName) VALUES (1, 'Displays');
+INSERT INTO Categories (CategoryID, CategoryName) VALUES (1, 'Accessories');
+INSERT INTO Categories (CategoryID, CategoryName) VALUES (1, 'Storage');
+
+-- POP Suppliers
+
+INSERT INTO Suppliers (SupplierID, SupplierName, Phone, Email) VALUES (101, 'Apex Electronics', '555-0101', 'contact@apexelectronics.com'); 
+INSERT INTO Suppliers (SupplierID, SupplierName, Phone, Email) VALUES (102, 'Global Tech', '555-0102', 'support@globaltech.com');
+INSERT INTO Suppliers (SupplierID, SupplierName, Phone, Email) VALUES (103, 'Nova Distributions', '555-0103', 'sales@novadist');
+INSERT INTO Suppliers (SupplierID, SupplierName, Phone, Email) VALUES (104, 'Prime Imports', '555-0104', 'info@primeimports.com');
+INSERT INTO Suppliers (SupplierID, SupplierName, Phone, Email) VALUES (105, 'Vanguard Supply', '555-0105', 'orders@vanguard.com');
+
+--POP Products
+
+INSERT INTO Products (ProductID, ProductName, CategoryID, SupplierID, UnitPrice, QOH) VALUES (1, 'Wireless Mouse', 4, 101, 25.99, 150);
+INSERT INTO Products (ProductID, ProductName, CategoryID, SupplierID, UnitPrice, QOH) VALUES (2, 'Mechanical Keyboard', 4, 102, 79.99, 85);
+INSERT INTO Products (ProductID, ProductName, CategoryID, SupplierID, UnitPrice, QOH) VALUES (3, '27-inch-monitor', 3, 103, 299.99, 40);
+INSERT INTO Products (ProductID, ProductName, CategoryID, SupplierID, UnitPrice, QOH) VALUES (4, 'Bluetooth Headphones', 2, 104, 120.50, 60);
+INSERT INTO Products (ProductID, ProductName, CategoryID, SupplierID, UnitPrice, QOH) VALUES (5, '1TB External SSD', 5, 105, 89.99, 110);
+
+--POP Orders
+
+INSERT INTO Orders (OrderID, CustomerID, ProductID, Quantity, OrderAmount, OrderDate, OrderTime) VALUES (1001, 501, 1, 2, 51.98, '2026-03-01', '10:15:00');
+INSERT INTO Orders (OrderID, CustomerID, ProductID, Quantity, OrderAmount, OrderDate, OrderTime) VALUES (1002, 502, 3, 1, 299.99, '2026-03-02', '11:30:00');
+INSERT INTO Orders (OrderID, CustomerID, ProductID, Quantity, OrderAmount, OrderDate, OrderTime) VALUES (1003, 503, 2, 1, 79.99, '2026-03-03', '14:20:00');
+INSERT INTO Orders (OrderID, CustomerID, ProductID, Quantity, OrderAmount, OrderDate, OrderTime) VALUES (1004, 504, 5, 3, 269.97, '2026-03-04', '09:45:00');
+INSERT INTO Orders (OrderID, CustomerID, ProductID, Quantity, OrderAmount, OrderDate, OrderTime) VALUES (1005, 505, 4, 2, 241.00, '2026-03-05', '16:05:00');
+
+-- DATA MODIFICATION UPDATE AND DELETE
+
+--UPDATE: MODIFY THE UNIT PRICE OF A SPECIFIC PRODUCT
+
+UPDATE Products
+SET UnitPrice = 27.99
+WHERE ProductID = 1;
+
+--DELETE: REMOVE A SPECIFIC ORDER RECORD
+
+DELETE FROM Orders
+WHERE OrderID = 1001;
